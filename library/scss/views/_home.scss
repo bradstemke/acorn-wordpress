@@ -1,0 +1,16 @@
+// home.scss
+
+.grid-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.grid-item {
+  width: 100px;
+  height: 200px;
+  background: blue;
+  margin: 0 1rem;
+  display: inline-block;
+}

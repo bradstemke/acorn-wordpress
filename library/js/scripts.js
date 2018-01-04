@@ -1,17 +1,53 @@
-/*
- * Bones Scripts File
- * Author: Eddie Machado
- *
- * This file should contain any js scripts you want to add to the site.
- * Instead of calling it in the header or throwing it inside wp_head()
- * this file will be called automatically in the footer so as not to
- * slow the page load.
- *
- * There are a lot of example functions and tools in here. If you don't
- * need any of it, just remove it. They are meant to be helpers and are
- * not required. It's your world baby, you can do whatever you want.
-*/
+// scripts.js
+// ============================================================================
+// Global
+// ============================================================================
 
+var FOO = FOO || {};
+    FOO.Home = {};
+
+// ============================================================================
+// Init
+// ============================================================================
+$(document).ready(function(){
+
+});
+
+$(window).load(function() {
+  showtimeClass();
+});
+
+// ----------------------------------------------------------------------------
+// Global: Functions
+// ----------------------------------------------------------------------------
+function showtimeClass() {
+  $('body').addClass('showtime');
+}
+
+/*
+ * Timing Functions
+*/
+var functionStart = window.performance.now();
+var functionComplete = window.performance.now();
+var functionTime = functionComplete - functionStart;
+
+// console.log('Function Title started at ' + String(functionStart) + ' and ended at ' + String(functionComplete));
+// console.log('Function Title took ' + String(functionTime));
+
+(function(jQuery) {
+   jQuery.fn.clickoutside = function(callback) {
+      var outside = 1, self = $(this);
+      self.cb = callback;
+      this.click(function() {
+         outside = 0;
+      });
+      $(document).click(function() {
+         outside && self.cb();
+         outside = 1;
+      });
+      return $(this);
+   }
+})(jQuery);
 
 /*
  * Get Viewport Dimensions
@@ -24,7 +60,6 @@ function updateViewportDimensions() {
 }
 // setting the viewport width
 var viewport = updateViewportDimensions();
-
 
 /*
  * Throttle Resize-triggered Events
@@ -42,7 +77,6 @@ var waitForFinalEvent = (function () {
 
 // how long to wait before deciding the resize has stopped, in ms. Around 50-100 should work ok.
 var timeToWaitForLast = 100;
-
 
 /*
  * Here's an example so you can see how we're using the above function
@@ -105,9 +139,6 @@ function loadGravatars() {
 } // end function
 
 
-/*
- * Put all your regular jQuery in here.
-*/
 jQuery(document).ready(function($) {
 
   /*
