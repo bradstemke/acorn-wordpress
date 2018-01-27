@@ -150,8 +150,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-replace');
-
   grunt.loadNpmTasks('grunt-babel');
 
   // Build DIST folder
