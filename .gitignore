@@ -56,3 +56,6 @@ temp/
 
 *.codekit
 *.scssc
+
+node_modules
+.sass-cache
