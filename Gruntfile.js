@@ -5,9 +5,9 @@ module.exports = function(grunt) {
   var globalConfig = {
     projectTitle: 'bf-static-starter',
     path: '/Users/bradstemke/Sites',
-    assets: 'assets/',
-    dev: 'src/',
-    dist: 'dist/'
+    assets: 'library/',
+    dev: 'library/',
+    dist: 'library/'
   };
 
   // Project Configuration
@@ -42,21 +42,16 @@ module.exports = function(grunt) {
 
     watch: {
       sass: {
-        files: '<%= globalConfig.dev %>/stylesheets/**/**/*.scss',
+        files: '<%= globalConfig.assets %>/scss/**/**/*.scss',
         tasks: 'sass:dev'
       },
 
       scripts: {
-        files: '<%= globalConfig.dev %>/scripts/**',
+        files: '<%= globalConfig.assets %>/js/**',
         tasks: ['copy:js_plugins', 'copy:js_main'],
         options: {
           interrupt: true,
         },
-      },
-
-      html: {
-        files: '<%= globalConfig.dev %>*.html',
-        tasks: 'copy:html'
       }
     },
 
@@ -66,11 +61,11 @@ module.exports = function(grunt) {
           style: 'expanded',
           banner: '/* <%= pkg.title || pkg.name %> - <%= grunt.template.today(\"mm-dd-yyyy\") %> - Copyright <%= grunt.template.today(\"yyyy\") %>; */',
         },
-        files: { '<%= globalConfig.dist %>/<%= globalConfig.assets %>/stylesheets/style.css' : '<%= globalConfig.dev %>/stylesheets/style.scss' }
+        files: { '<%= globalConfig.assets %>/css/style.css' : '<%= globalConfig.assets %>/scss/style.scss' }
       },
       build: {
         options: { style: 'compressed' },
-        files: { '<%= globalConfig.dist %>/<%= globalConfig.assets %>/stylesheets/style.css' : '<%= globalConfig.dev %>/stylesheets/style.scss' }
+        files: { '<%= globalConfig.assets %>/css/style.css' : '<%= globalConfig.assets %>/scss/style.scss' }
       }
     },
 
@@ -79,35 +74,30 @@ module.exports = function(grunt) {
       js_plugins: {
         expand: true,
         src: '**',
-        cwd: '<%= globalConfig.dev %>/scripts/plugins',
-        dest: '<%= globalConfig.dist %>/assets/scripts/plugins',
+        cwd: '<%= globalConfig.assets %>/js/plugins',
+        dest: '<%= globalConfig.assets %>/js/',
       },
       js_main: {
         expand: true,
         src: 'scripts.js',
-        cwd: '<%= globalConfig.dev %>/scripts',
-        dest: '<%= globalConfig.dist %>/assets/scripts',
+        cwd: '<%= globalConfig.assets %>/js',
+        dest: '<%= globalConfig.assets %>/js',
       },
-      build: {
-        expand: true,
-        cwd: '<%= globalConfig.dev %>/',
-        src: ['**', '!node_modules/**', '!Gruntfile.js', '!package.json', '!scripts/**', '!stylesheets/**'],
-        dest: '<%= globalConfig.dist %>/'
-      },
-      html: {
-        expand: true,
-        cwd: '<%= globalConfig.dev %>/',
-        src: ['*.html'],
-        dest: '<%= globalConfig.dist %>/'
-      }
+      // build: {
+      //   expand: true,
+      //   cwd: '<%= globalConfig.dev %>/',
+      //   src: ['**', '!node_modules/**', '!Gruntfile.js', '!package.json', '!scripts/**', '!stylesheets/**'],
+      //   dest: '<%= globalConfig.dist %>/'
+      // }
     },
 
     // Empty build folder
-    clean: {
-      build: {
-        src: ['<%= globalConfig.dist %>/']
-      }
-    },
+    // commenting this out for now, doesn't currently apply
+    // clean: {
+    //   build: {
+    //     src: ['<%= globalConfig.dist %>/']
+    //   }
+    // },
 
     connect: {
       server: {
@@ -124,17 +114,17 @@ module.exports = function(grunt) {
         options: { optimizationLevel: 3 },
         files: [{
           expand: true,
-          cwd: '<%= globalConfig.dev %>/assets/',
+          cwd: '<%= globalConfig.assets %>/images/',
           src: ['**/*.jpeg', '**/*.png', '**/*.jpg'],
-          dest: '<%= globalConfig.dist %>/assets/media/'
+          dest: '<%= globalConfig.assets %>/images/optimized'
         }]
       }
     },
 
     concat: {
       plugins: {
-        src: '<%= globalConfig.dev %>/scripts/plugins/*.js',
-        dest: '<%= globalConfig.dist %>/assets/scripts/plugins.js'
+        src: '<%= globalConfig.assets %>/js/plugins/*.js',
+        dest: '<%= globalConfig.assets %>/js/plugins.js'
       }
     }
   }); // END grunt.initConfig
@@ -150,7 +140,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-babel');
+  // grunt.loadNpmTasks('grunt-babel');
 
   // Build DIST folder
   grunt.registerTask('build', [
@@ -174,4 +164,9 @@ module.exports = function(grunt) {
   grunt.registerTask('server', [
     'connect:server'
   ]);
+
+  grunt.registerTask('dev', [
+    'watch:sass',
+    'watch:scripts'
+    ]);
 };

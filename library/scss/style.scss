@@ -15,11 +15,10 @@
 // GLOBAL
 // ========================================
 @import "global/acorn-reset";
-@import "global/buttons";
-@import "global/helpers";
-@import "global/normalize";
 @import "global/variables";
-@import "global/links-buttons";
+@import "global/helpers";
+@import "global/buttons";
+@import "global/normalize";
 @import "global/layout";
 @import "global/icons";
 @import "global/typography";
@@ -46,12 +45,11 @@
 // PARTIALS
 // ========================================
 @import "partials/normalize";
-@import "partials/variables";
 @import "partials/mixins";
 
 // ========================================
 // VIEWS
 // ========================================
 @import "views/home";
-@import "views/style-guide";
+// @import "views/style-guide";
 
