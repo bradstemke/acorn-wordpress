@@ -24,15 +24,13 @@
 		<!--[if IE]>
 			<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
 		<![endif]-->
-		<?php // or, set /favicon.ico for IE10 win ?>
-		<meta name="msapplication-TileColor" content="#f01d4f">
-		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
-            <meta name="theme-color" content="#121212">
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
 		<?php // wordpress head functions ?>
 		<?php wp_head(); ?>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>jQuery('html').removeClass('no-js').addClass('js');</script>
 		<?php // end of wordpress head ?>
 
 		<?php // drop Google Analytics Here ?>

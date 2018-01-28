@@ -142,7 +142,7 @@ function bones_scripts_and_styles() {
 		wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
 
 		// enqueue styles and scripts
-		wp_enqueue_script( 'bones-modernizr' );
+		// wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_style( 'bones-stylesheet' );
 		wp_enqueue_style( 'bones-ie-only' );
 
@@ -153,7 +153,7 @@ function bones_scripts_and_styles() {
 		using the google cdn. That way it stays cached
 		and your site will load faster.
 		*/
-		wp_enqueue_script( 'jquery' );
+		// wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'bones-js' );
 
 	}
